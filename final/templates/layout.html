@@ -38,6 +38,30 @@
 
     <body>
 
+        <input type="checkbox" id="ham-menu">
+        <label for="ham-menu">
+        <div class="hide-des">
+            <span class="menu-line"></span>
+            <span class="menu-line"></span>
+            <span class="menu-line"></span>
+            <span class="menu-line"></span>
+            <span class="menu-line"></span>
+            <span class="menu-line"></span>
+        </div>
+
+        </label>
+        <div class="full-page-green"></div>
+        <div class="ham-menu">
+        <ul class="centre-text bold-text">
+            <li>Home</li>
+            <li>Categories</li>
+            <li>Services</li>
+            <li>Shop</li>
+            <li>Support</li>
+            <li>Contact us</li>
+        </ul>
+        </div>
+
         <!--Page title-->
         <div class = "header">
             <p class="title">SleepS50</p>
@@ -54,27 +78,6 @@
         <main class="container-fluid py-5 text-center">
             {% block main %}{% endblock %}
         </main>
-
-        <footer>
-            <nav class="menu" class="navbar">
-                <input checked="checked" class="menu-toggler" type="checkbox">
-                <label for="menu-toggler"></label>
-                <ul>
-                    <li class="menu-item">
-                    <a class="fas fa-cat" href="/login"></a>
-                    </li>
-                    <li class="menu-item">
-                    <a class="fas fa-cookie-bite" href="/diary"></a>
-                    </li>
-                    <li class="menu-item">
-                    <a class="fab fa-earlybirds" href="/log"></a>
-                    </li>
-                    <li class="menu-item">
-                    <a class="fab fa-fly"href="/resources"></a>
-                    </li>
-                </ul>
-            </nav>
-        </footer>
 
     </body>
 
