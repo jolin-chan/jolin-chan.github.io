@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Diary
+{% endblock %}
+
+{% block main %}
+    <form action="/diary" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="hours_slept" name="hours_slept" placeholder="Number of Hours Slept" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="snoozes" name="snoozes" placeholder="Number of Alarm Snoozes" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="sleep_quality" name="sleep_quality" placeholder="Quality of Sleep" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="mood" name="mood" placeholder="Morning Wake-Up Mood" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="daily_goals" name="daily_goals" placeholder="Goals for Today" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="dream" name="dream" placeholder="Record your dream" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Submit Diary</button>
+    </form>
+{% endblock %}
