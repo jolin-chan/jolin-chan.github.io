@@ -127,7 +127,8 @@ def diary():
         #ask for dreams
         dream = request.form.get("dream")
         #query into diary database
-        db.execute("INSERT INTO diary (hours_slept, snoozes, sleep_quality, mood, daily_goals, dream) VALUES (?,?,?,?,?,?,?)", hours_slept, snoozes, sleep_quality, mood, daily_goals, dream)
+        print(hours_slept)
+        db.execute("INSERT INTO diary (user_id, hours_slept, snoozes, sleep_quality, mood, daily_goals, dream) VALUES (?,?,?,?,?,?,?)", session["user_id"], hours_slept, snoozes, sleep_quality, mood, daily_goals, dream)
         return redirect("/") #might have to change this later 
     else:
         return render_template("diary.html")
