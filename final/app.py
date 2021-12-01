@@ -119,15 +119,16 @@ def diary():
         #ask for number of snoozes
         snoozes = request.form.get("snoozes")
         #ask for sleep quality
-        sleep_quality = request.form.get("sleep_quality")
+        # sleep_quality = request.form.get("sleep_quality")
+        sleep_quality = "good"
         #ask for wake up mood
-        mood = request.form.get("mood")
+        # mood = request.form.get("mood")
+        mood = "good"
         #ask for today's goals
         daily_goals = request.form.get("daily_goals")
         #ask for dreams
         dream = request.form.get("dream")
         #query into diary database
-        print(hours_slept)
         db.execute("INSERT INTO diary (user_id, hours_slept, snoozes, sleep_quality, mood, daily_goals, dream) VALUES (?,?,?,?,?,?,?)", session["user_id"], hours_slept, snoozes, sleep_quality, mood, daily_goals, dream)
         return redirect("/") #might have to change this later 
     else:
