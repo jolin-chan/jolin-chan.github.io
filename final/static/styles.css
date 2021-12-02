@@ -30,16 +30,35 @@ footer
     color: black;
 }
 
-button
+.button
 {
-    padding: 1rem;
+    display: inline-block;
+    padding: 10px 20px;
     margin: 15px;
     font-size: 20px;
-    border: none;
+    text-align: center;
+    outline: none;
     background-color: #FFCACA;
+    color: white;
 }
 
-.grow:hover
+.btn
 {
-    transform: scale(1.05);
+    font-size: 18px;
+    text-align: center;
+    border-color: #FFCACA;
+    background-color: #FFCACA;
+    color: white;
+}
+
+.buttonStyle:hover
+{
+    background-color: #FF9A9A;
+    border-color: #FF9A9A;
+}
+
+.formStyle
+{
+    align-content: center;
+    width: 40%;
 }
