@@ -8,19 +8,19 @@
 body
 {
     font-family: 'Quicksand', sans-serif;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .header1
 {
     font-family: 'Nanum Pen Script', cursive;
-    font-size: 18px;
+    font-size: 65px;
 }
 
 .header2
 {
     font-family: 'Gamja Flower', cursive;
-    font-size: 18px; 
+    font-size: 50px; 
 }
 
 footer
@@ -36,6 +36,7 @@ button
     margin: 15px;
     font-size: 20px;
     border: none;
+    background-color: #FFCACA;
 }
 
 .grow:hover
