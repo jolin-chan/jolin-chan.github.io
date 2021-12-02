@@ -38,38 +38,41 @@
 
     <body>
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/index">SleepS50</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
+      <nav class="bg-light border navbar navbar-expand-md navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/"><span class="red">SleepS50</span></a>
+            <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar" data-bs-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav">
-                <li class="nav-item active">
-                  <a class="nav-link" href="/login">log in</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/diary">diary</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/history">log</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/resources">resources</a>
-                </li>
-              </ul>
+            <div class="collapse navbar-collapse" id="navbar">
+                {% if session["user_id"] %}
+                    <ul class="navbar-nav me-auto mt-2">
+                        <li class="nav-item"><a class="nav-link" href="/diary">diary</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/log">log</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/resources">resources</a></li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto mt-2">
+                        <li class="nav-item"><a class="nav-link" href="/logout">log out</a></li>
+                    </ul>
+                {% else %}
+                    <ul class="navbar-nav ms-auto mt-2">
+                        <li class="nav-item"><a class="nav-link" href="/register">register</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/login">log in</a></li>
+                    </ul>
+                {% endif %}
             </div>
-        </nav>
+        </div>
+    </nav>
 
         <!--Page title-->
         <img src="/static/SleepS50.jpg" alt="SleepS50" width="100%""> 
 
         {% if get_flashed_messages() %}
-            <header>
-                <div class="alert alert-primary mb-0 text-center" role="alert">
-                    {{ get_flashed_messages() | join(" ") }}
-                </div>
-            </header>
+        <header>
+            <div class="alert alert-primary mb-0 text-center" role="alert">
+                {{ get_flashed_messages() | join(" ") }}
+            </div>
+        </header>
         {% endif %}
 
         <main class="container-fluid py-5 text-center">

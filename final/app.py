@@ -36,7 +36,6 @@ def after_request(response):
     return response
 
 @app.route("/")
-@login_required
 def index():
     return render_template("index.html")
 
@@ -112,6 +111,7 @@ for code in default_exceptions:
 
 #SECOND PAGE FUNCTIONALITIES
 @app.route("/diary", methods=["GET", "POST"])
+@login_required
 def diary():
     if request.method == "POST":
         #ask for hours slept
@@ -130,14 +130,13 @@ def diary():
         dream = request.form.get("dream")
         #query into diary database
         db.execute("INSERT INTO diary (user_id, hours_slept, snoozes, sleep_quality, mood, daily_goals, dream) VALUES (?,?,?,?,?,?,?)", session["user_id"], hours_slept, snoozes, sleep_quality, mood, daily_goals, dream)
-        return redirect("/") #might have to change this later 
+        return redirect("log.html") #might have to change this later (jolin: i changed it to log)
     else:
         return render_template("diary.html")
 
 @app.route("/history")
 @login_required
 def history():
-    """Show history of transactions"""
     diary_log = db.execute("SELECT * FROM diary WHERE id = ?", session["user_id"])
     return render_template("history.html", diary_log = diary_log)
         
