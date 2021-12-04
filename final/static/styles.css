@@ -56,3 +56,45 @@ footer
     background-color: #FF9A9A;
     border-color: #FF9A9A;
 }
+
+table.center
+{
+    margin-left:auto; 
+    margin-right:auto;
+}
+
+.styled-table
+{
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    box-shadow: 12px 12px 2px 1px #FADCDC;
+}
+
+.styled-table th,
+.styled-table td
+{
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr
+{
+    border-bottom: 1px solid #FFFAEA;
+}
+
+.styled-table tbody tr:nth-of-type(odd)
+{
+    background-color: #FFFAEA;
+}
+
+.card
+{
+    box-shadow: 0 4px 8px 0 #FFFAEA;
+    transition: 0.3s;
+}
+
+.card:hover
+{
+    box-shadow: 0 8px 16px 0 #FFFAEA
+}

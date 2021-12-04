@@ -5,16 +5,39 @@
 {% endblock %}
 
 {% block main %}
-    <form method="post" action="/get_resources">      
-    <form action="/get_resources" method="post">    
-        <fieldset>      
-            <legend>what are you interested in learning about?</legend>           
-            <input type="checkbox" name="sleep" value="clicked" onclick="show">general sleep tips<br>   
-            <input type="checkbox" name="meditate" value="clicked" onclick="show">meditation<br>    
-            <input type="checkbox" name="music" value="clicked" onclick="show">music for sleeping<br>
-            <input type="checkbox" name="dreams" value="clicked" onclick="show">understanding dreams<br>            
-            <br>      
-            <button class="btn btn-primary" type="submit">get some resources!</button>     
-        </fieldset>
-    </form>
+
+    <div class="container">
+        <div class="row align-items-start">
+        <div class="col">
+            <p style="font-family:Gamja Flower; font-size:30px">if you need help waking up... try these ringtones!</p>
+            <br> 
+            <p>this is CS50:</p>
+            <audio controls="controls" controls="download"> <br>
+                <source src="static/ThisisCS50.mp3" type="audio/mp3"/><br>
+                </audio><br>
+                <a href="static/ThisisCS50.mp3">download audio</a> 
+            <br>
+            <br>
+            <p>CS50 intro theme song:</p>
+            <audio controls="controls" controls="download"> <br>
+                <source src="static/CS50IntroThemeSong.mp3" type="audio/mp3" /><br>
+                </audio><br>
+                <a href="static/CS50IntroThemeSong.mp3">download audio </a> 
+        </div>
+        <div class="col">
+            <form method="post" action="/get_resources">      
+            <form action="/get_resources" method="post">
+                <fieldset>      
+                    <p style="font-family:Gamja Flower; font-size:30px">what do you want to learn more about?</p><br>         
+                    <input type="checkbox" name="tips" value="sleep">general sleep tips<br>
+                    <input type="checkbox" name="tips" value="meditation">meditation<br>    
+                    <input type="checkbox" name="tips" value="music">music for sleeping<br>
+                    <input type="checkbox" name="tips" value="dreams">understanding dreams<br>           
+                    <br>      
+                    <button class="btn btn-primary" type="submit">get some resources!</button>     
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <br>
 {% endblock %}

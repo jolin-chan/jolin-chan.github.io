@@ -5,107 +5,17 @@
 {% endblock %}
 
 {% block main %}
-    <p>we hope these help!</p>
-    <table class="table tablestriped">
-        <thead>
-            <tr>
-                <th class="text-start">source</th>
-                <th class="text-start">link</th>
-            </tr>
-        </thead>
+    <h4 class=header2>we hope these help!</h4>
+
+    <table class="styled-table center">
         <tbody>
-            {% for tips in tips %}
+        {% for tips in tips %}
             <tr>
+                <td class="text-start">{{tips.category}}</td>
                 <td class="text-start">{{tips.source}}</td>
                 <td class="text-start">{{tips.link}}</td>
             </tr>
-            {% endfor %}
+        {% endfor %}
         </tbody>
     </table>
-    
-    <!-- <p>
-        these articles might help! :) <br>
-        Sleep : {{sleep_tips}}<br>
-        Meditation: {{meditation_tips}}<br>
-        Music : {{music}}<br>
-        Dreams : {{dreams_tips}}<br>
-    </p> -->
-    <p> If you need help waking up... try these ringtones!</p> <br>
-    <audio controls="controls" controls="download"> <br>
-        <source src="CS50 Intro Theme Song.ogg" type="audio/ogg" />
-      <source src="CS50 Intro Theme Song.mp3" type="audio/mp3" /><br>
-      </audio>
-      <a href="CS50 Intro Theme Song.mp3">Download audio </a>
-    <!-- <p>Sleep tips: </p>
-    <table class="table tablestriped">
-        <thead>
-            <tr>
-                <th class="text-start">source</th>
-                <th class="text-start">link</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for sleep_tips in sleep_tips %}
-            <tr>
-                <td class="text-start">{{sleep_tips.source}}</td>
-                <td class="text-start">{{sleep_tips.link}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-        <br>
-    </table>
-
-    <p>Meditation Tips: </p>
-    <table class="table tablestriped">
-        <thead>
-            <tr>
-                <th class="text-start">source</th>
-                <th class="text-start">link</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for meditation_tips in meditation_tips %}
-            <tr>
-                <td class="text-start">{{meditation_tips.source}}</td>
-                <td class="text-start">{{meditation_tips.link}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    
-    <p>Music: </p>
-    <table class="table tablestriped">
-        <thead>
-            <tr>
-                <th class="text-start">source</th>
-                <th class="text-start">link</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for music in music %}
-            <tr>
-                <td class="text-start">{{music.source}}</td>
-                <td class="text-start">{{music.link}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <p>Dream tips: </p>
-    <table class="table tablestriped">
-        <thead>
-            <tr>
-                <th class="text-start">source</th>
-                <th class="text-start">link</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for dreams_tips in dreams_tips %}
-            <tr>
-                <td class="text-start">{{dreams_tips.source}}</td>
-                <td class="text-start">{{dreams_tips.link}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>  -->
 {% endblock %}   
