@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log
+{% endblock %}
+
+{% block main %}
+    <table class="table tablestriped">
+        <thead>
+            <tr>
+                <th class="text-start">hours slept</th>
+                <th class="text-end">alarm snooze count</th>
+                <th class="text-end">sleep quality </th>
+                <th class="text-end">wake up mood</th>
+                <th class="text-end">current day's goal</th>
+                <th class="text-end">dream</th>
+                <th class="text-end">day</th>
+            </tr>
+        </thead>
+    <tbody>
+        {% for diary_log in diary_logs %}
+                <tr>
+                    <td class="text-start">{{diary_log.hours_slept}}</td>
+                    <td class="text-end">{{diary_log.snoozes}}</td>
+                    <td class="text-end">{{diary_log.sleep_quality}}</td>
+                    <td class="text-end">{{diary_log.mood}}</td>
+                    <td class="text-end">{{diary_log.daily_goals}}</td>
+                    <td class="text-end">{{diary_log.dream}}</td>
+                    <td class="text-end">{{diary_log.time}}</td>
+                </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

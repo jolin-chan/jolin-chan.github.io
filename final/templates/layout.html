@@ -38,41 +38,41 @@
 
     <body>
 
-        <input type="checkbox" id="ham-menu">
-        <label for="ham-menu">
-        <div class="hide-des">
-            <span class="menu-line"></span>
-            <span class="menu-line"></span>
-            <span class="menu-line"></span>
-            <span class="menu-line"></span>
-            <span class="menu-line"></span>
-            <span class="menu-line"></span>
-        </div>
-
-        </label>
-        <div class="full-page-green"></div>
-        <div class="ham-menu">
-        <ul class="centre-text bold-text">
-            <li>Home</li>
-            <li>Categories</li>
-            <li>Services</li>
-            <li>Shop</li>
-            <li>Support</li>
-            <li>Contact us</li>
-        </ul>
-        </div>
+        <nav class="bg-light border navbar navbar-expand-md navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/"><span class="header2" style="font-size:40px">SleepS50</span></a>
+                <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar" data-bs-toggle="collapse" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbar">
+                    {% if session["user_id"] %}
+                        <ul class="navbar-nav me-auto mt-2">
+                            <li class="nav-item"><a class="nav-link" href="/diary">diary</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/log">log</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/resources">resources</a></li>
+                        </ul>
+                        <ul class="navbar-nav ms-auto mt-2">
+                            <li class="nav-item"><a class="nav-link" href="/logout">log out</a></li>
+                        </ul>
+                    {% else %}
+                        <ul class="navbar-nav ms-auto mt-2">
+                            <li class="nav-item"><a class="nav-link" href="/register">register</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/login">log in</a></li>
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
 
         <!--Page title-->
-        <div class = "header">
-            <p class="title">SleepS50</p>
-        </div>
+        <img src="/static/SleepS50.jpg" alt="SleepS50" width="100%""> 
 
         {% if get_flashed_messages() %}
-            <header>
-                <div class="alert alert-primary mb-0 text-center" role="alert">
-                    {{ get_flashed_messages() | join(" ") }}
-                </div>
-            </header>
+        <header>
+            <div class="alert alert-primary mb-0 text-center" role="alert">
+                {{ get_flashed_messages() | join(" ") }}
+            </div>
+        </header>
         {% endif %}
 
         <main class="container-fluid py-5 text-center">

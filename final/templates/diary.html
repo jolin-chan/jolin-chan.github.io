@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block main %}
-<form action="/diary" method="post">
+<form action="/diary" method="post" class="formStyle">
     <!-- <div class="mb-3">
         <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="hours_slept" name="hours_slept" placeholder="Number of Hours Slept" type="text">
     </div>
@@ -23,6 +23,11 @@
     </div>
     <div class="mb-3">
         <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="dream" name="dream" placeholder="Record your dream" type="text"> -->
+
+    <div class = "header">
+        <p class="title">SleepS50</p>
+    </div>
+
     <div class="mb-3">
         <label for="formGroupExampleInput" class="form-label">how many hours did you sleep last night?</label>
         <input type="text" class="form-control" id="hours_slept" name="hours_slept" placeholder="input a number!">
@@ -41,6 +46,6 @@
         <input type="text" class="form-control" id="dream" name="dream" placeholder="record your dream last night if you remember :)">
     </div>
     </div>
-    <button class="btn btn-primary" type="submit">Submit Diary</button>
+    <button class="btn btn-primary buttonStyle" type="submit">Submit Diary</button>
 </form>
 {% endblock %}
