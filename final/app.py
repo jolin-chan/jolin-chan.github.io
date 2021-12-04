@@ -193,7 +193,6 @@ def get_resources():
           sleep_tips = db.execute("SELECT category, source, link FROM tips WHERE category = ?", category)
           for dict in sleep_tips:
             tips.append(dict)
-        print(tips)
         # if request.form.get("sleep") == "clicked":
         #     sleep_tips = db.execute("SELECT category, source, link FROM tips WHERE category = 'sleep'")
         # elif request.form.get("sleep") != "clicked":
