@@ -5,13 +5,14 @@
 {% endblock %}
 
 {% block main %}
-<p>
-    these articles might help! :) <br>
-    {{sleep}}
-    {{meditation_tips}}
-    {{music}}
-    {{dreams_tips}}
-<!-- 
+    <!-- <p>
+        these articles might help! :) <br>
+        Sleep : {{sleep_tips}}<br>
+        Meditation: {{meditation_tips}}<br>
+        Music : {{music}}<br>
+        Dreams : {{dreams_tips}}<br>
+    </p> -->
+    <p>Sleep tips: </p>
     <table class="table tablestriped">
         <thead>
             <tr>
@@ -20,14 +21,17 @@
             </tr>
         </thead>
         <tbody>
+            {% for sleep_tips in sleep_tips %}
             <tr>
                 <td class="text-start">{{sleep_tips.source}}</td>
                 <td class="text-start">{{sleep_tips.link}}</td>
             </tr>
+            {% endfor %}
         </tbody>
         <br>
     </table>
 
+    <p>Meditation Tips: </p>
     <table class="table tablestriped">
         <thead>
             <tr>
@@ -36,13 +40,16 @@
             </tr>
         </thead>
         <tbody>
+            {% for meditation_tips in meditation_tips %}
             <tr>
                 <td class="text-start">{{meditation_tips.source}}</td>
                 <td class="text-start">{{meditation_tips.link}}</td>
             </tr>
+            {% endfor %}
         </tbody>
     </table>
-
+    
+    <p>Music: </p>
     <table class="table tablestriped">
         <thead>
             <tr>
@@ -51,13 +58,16 @@
             </tr>
         </thead>
         <tbody>
+            {% for music in music %}
             <tr>
                 <td class="text-start">{{music.source}}</td>
                 <td class="text-start">{{music.link}}</td>
             </tr>
+            {% endfor %}
         </tbody>
     </table>
 
+    <p>Dream tips: </p>
     <table class="table tablestriped">
         <thead>
             <tr>
@@ -66,13 +76,12 @@
             </tr>
         </thead>
         <tbody>
+            {% for dreams_tips in dreams_tips %}
             <tr>
                 <td class="text-start">{{dreams_tips.source}}</td>
                 <td class="text-start">{{dreams_tips.link}}</td>
             </tr>
+            {% endfor %}
         </tbody>
-    </table> -->
-
-</p>
-    
-{% endblock %}
+    </table> 
+{% endblock %}   

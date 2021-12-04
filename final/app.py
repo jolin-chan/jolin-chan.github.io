@@ -162,9 +162,8 @@ def diary():
 @app.route("/log")
 @login_required
 def log():
-    avg_hours = db.execute("SELECT AVG(hours_slept) FROM diary WHERE user_id = ?", session["user_id"])[0]['AVG(hours_slept)']
     diarys = db.execute("SELECT * FROM diary WHERE user_id = :user_id ORDER BY time DESC", user_id=session["user_id"])
-    return render_template("log.html", diarys = diarys, avg_hours = avg_hours)
+    return render_template("log.html", diarys = diarys)
 
 @app.route("/change_password", methods=["GET", "POST"])
 @login_required
@@ -191,22 +190,29 @@ def get_resources():
     #if form set equal to 1, then select them from the table
     if request.method == "POST":
         if request.form.get("sleep") == "clicked":
-            sleep = db.execute("SELECT * FROM sleep_tips")
+            sleep_tips = db.execute("SELECT * FROM sleep_tips")
         elif request.form.get("sleep") != "clicked":
-            sleep = "none selected"
+            sleep_tips = "none selected"
         if request.form.get("meditate") == "clicked":
-            meditate = db.execute("SELECT * FROM meditation_tips")
+            meditation_tips = db.execute("SELECT * FROM meditation_tips")
         elif request.form.get("meditate") != "clicked":
-            meditate = "none selected"
+            meditation_tips = "none selected"
         if request.form.get("music") == "clicked":
             music = db.execute("SELECT * FROM music")
         elif request.form.get("music") != "clicked":
             music ="none selected"
         if request.form.get("dreams") == "clicked":
-            dreams = db.execute("SELECT * FROM dreams_tips")
+            dreams_tips = db.execute("SELECT * FROM dreams_tips")
         elif request.form.get("dreams") != "clicked":
-            dreams = "none selected"
-        return render_template("resources.html", sleep = sleep, meditate = meditate, music = music, dreams = dreams)
+            dreams_tips = "none selected"  
+        return render_template("resources.html", sleep_tips = sleep_tips, meditation_tips = meditation_tips, music = music, dreams_tips = dreams_tips)
     else:
         return render_template("get_resources.html")
+
+@app.route("/analysis")
+@login_required
+def analysis():
+    avg_hours = db.execute("SELECT AVG(hours_slept) FROM diary WHERE user_id = ?", session["user_id"])[0]['AVG(hours_slept)']
+    avg_snoozes = db.execute("SELECT AVG(snoozes) FROM diary WHERE user_id = ?", session["user_id"])[0]['AVG(snoozes)']
+    return render_template("analysis.html", avg_hours = avg_hours, avg_snoozes = avg_snoozes)
 
