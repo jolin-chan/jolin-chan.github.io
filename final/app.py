@@ -119,24 +119,47 @@ def diary():
         #ask for number of snoozes
         snoozes = request.form.get("snoozes")
         #ask for sleep quality
-        # sleep_quality = request.form.get("sleep_quality")
-        sleep_quality = "good"
-        #ask for wake up mood
-        # mood = request.form.get("mood")
-        mood = "good"
         #ask for today's goals
         daily_goals = request.form.get("daily_goals")
         #ask for dreams
         dream = request.form.get("dream")
         #query into diary database
+        # sleep_quality = request.form.get("sleep_quality")
+        # sleep_quality = "good"
+        if request.form.get("sleep") == "1":
+            sq = "Best Night Ever!!"
+        elif request.form.get("sleep") == "2":
+            sq = "Good"
+        elif request.form.get("sleep") == "3":
+            sq = "Eh.. it was okay"
+        elif request.form.get("sleep") == "4":
+            sq = "Not so great"
+        elif request.form.get("sleep") == "5":
+            sq = "Didn't sleep a wink T_T"
+        sleep_quality = sq
+        #ask for wake up mood
+        # mood = request.form.get("mood")
+        # mood = "good"
+        if request.form.get("vibe") == "1":
+            feelings = "excited"
+        elif request.form.get("vibe") == "2":
+            feelings = "happy"
+        elif request.form.get("vibe") == "3":
+            feelings = "ok"
+        elif request.form.get("vibe") == "4":
+            feelings = "sleepy"
+        elif request.form.get("vibe") == "5":
+            feelings = "sad"
+        elif request.form.get("vibe") == "6":
+            feelings = "tired"
+        mood = feelings
         db.execute("INSERT INTO diary (user_id, hours_slept, snoozes, sleep_quality, mood, daily_goals, dream) VALUES (?,?,?,?,?,?,?)", session["user_id"], hours_slept, snoozes, sleep_quality, mood, daily_goals, dream)
-        return redirect("log.html") #might have to change this later (jolin: i changed it to log)
+        return render_template("sumbited.html")
     else:
         return render_template("diary.html")
 
-@app.route("/log")
+@app.route("/history")
 @login_required
-def log():
+def history():
     diary_log = db.execute("SELECT * FROM diary WHERE id = ?", session["user_id"])
-    return render_template("log.html", diary_log = diary_log)
-        
+    return render_template("history.html", diary_log = diary_log)
