@@ -1,11 +1,11 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Resources
+    Get Resources
 {% endblock %}
 
 {% block main %}
-    <form method="post" action="/Tests/Post/">      
+    <form method="post" action="/get_resources">      
         <fieldset>      
             <legend>what are you interested in learning about?</legend>           
             <input type="checkbox" name="sleep_tips" value="sleep_tips">general sleep tips<br>   
@@ -13,7 +13,7 @@
             <input type="checkbox" name="music" value="music">music for sleeping<br>
             <input type="checkbox" name="dreams" value="dreams">understanding dreams<br>            
             <br>      
-            <input type="submit" value="get some resources!" />      
+            <button class="btn btn-primary" type="submit">get some resources!</button>     
         </fieldset>      
     </form>
 {% endblock %}
