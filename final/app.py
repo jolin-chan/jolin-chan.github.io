@@ -161,5 +161,6 @@ def diary():
 @app.route("/log")
 @login_required
 def log():
-    diarys = db.execute("SELECT * FROM diary WHERE id = ?", session["user_id"])
+    # diarys = db.execute("SELECT * FROM diary WHERE id = ?", session["user_id"])
+    diarys = db.execute("SELECT * FROM diary WHERE user_id = :user_id", user_id=session["user_id"])
     return render_template("log.html", diarys = diarys)
