@@ -154,7 +154,7 @@ def diary():
             feelings = "tired"
         mood = feelings
         db.execute("INSERT INTO diary (user_id, hours_slept, snoozes, sleep_quality, mood, daily_goals, dream) VALUES (?,?,?,?,?,?,?)", session["user_id"], hours_slept, snoozes, sleep_quality, mood, daily_goals, dream)
-        return render_template("submited.html")
+        return render_template("submitted.html")
     else:
         return render_template("diary.html")
 
