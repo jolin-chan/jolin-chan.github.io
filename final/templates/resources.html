@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block main %}
+<<<<<<< HEAD
     <!-- <p>
         these articles might help! :) <br>
         Sleep : {{sleep_tips}}<br>
@@ -31,58 +32,19 @@
         </tbody>
         <br>
     </table>
+=======
+    <h4 class=header2>we hope these help!</h4>
+>>>>>>> 6ac620fbce9897d497746af1138114d1f6a2b255
 
-    <p>Meditation Tips: </p>
-    <table class="table tablestriped">
-        <thead>
-            <tr>
-                <th class="text-start">source</th>
-                <th class="text-start">link</th>
-            </tr>
-        </thead>
+    <table class="styled-table center">
         <tbody>
-            {% for meditation_tips in meditation_tips %}
+        {% for tips in tips %}
             <tr>
-                <td class="text-start">{{meditation_tips.source}}</td>
-                <td class="text-start">{{meditation_tips.link}}</td>
+                <td class="text-start">{{tips.category}}</td>
+                <td class="text-start">{{tips.source}}</td>
+                <td class="text-start">{{tips.link}}</td>
             </tr>
-            {% endfor %}
+        {% endfor %}
         </tbody>
     </table>
-    
-    <p>Music: </p>
-    <table class="table tablestriped">
-        <thead>
-            <tr>
-                <th class="text-start">source</th>
-                <th class="text-start">link</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for music in music %}
-            <tr>
-                <td class="text-start">{{music.source}}</td>
-                <td class="text-start">{{music.link}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <p>Dream tips: </p>
-    <table class="table tablestriped">
-        <thead>
-            <tr>
-                <th class="text-start">source</th>
-                <th class="text-start">link</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for dreams_tips in dreams_tips %}
-            <tr>
-                <td class="text-start">{{dreams_tips.source}}</td>
-                <td class="text-start">{{dreams_tips.link}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table> 
 {% endblock %}   

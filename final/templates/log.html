@@ -37,12 +37,12 @@
           {{diary.time}}
         </div>
         <div class="card-body">
-          <h5 class="card-text">I woke up feeling like: {{diary.mood}} </h5>
-          <h3 class="card-text">Sleep Quality: {{diary.sleep_quality}}  Hours Slept:{{diary.hours_slept}}  Snoozes: {{diary.snoozes}} </h5>
-          <p class="card-text">My goals for today are: {{diary.daily_goals}} </p>
-          <p class="card-text">Last night I dreamt about: {{diary.dream}}</p>
-          <br>
+          <p class="card-text">i woke up feeling: {{diary.mood}}</p>
+          <p class="card-text">sleep quality: {{diary.sleep_quality}}  |  hours slept: {{diary.hours_slept}}  |  snoozes: {{diary.snoozes}}</p>
+          <p class="card-text">my goals for today are: {{diary.daily_goals}}</p>
+          <p class="card-text">last night I dreamt about: {{diary.dream}}</p>
         </div>
-      </div>
+    </div>
+    <br>
     {% endfor %}
 {% endblock %}

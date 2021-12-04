@@ -186,26 +186,32 @@ def change_password():
 @app.route("/get_resources", methods=["GET", "POST"])
 @login_required
 def get_resources():
-    #if value of button clicked on, then set equal to 1, if not set equal to zero
-    #if form set equal to 1, then select them from the table
     if request.method == "POST":
-        if request.form.get("sleep") == "clicked":
-            sleep_tips = db.execute("SELECT * FROM sleep_tips")
-        elif request.form.get("sleep") != "clicked":
-            sleep_tips = "none selected"
-        if request.form.get("meditate") == "clicked":
-            meditation_tips = db.execute("SELECT * FROM meditation_tips")
-        elif request.form.get("meditate") != "clicked":
-            meditation_tips = "none selected"
-        if request.form.get("music") == "clicked":
-            music = db.execute("SELECT * FROM music")
-        elif request.form.get("music") != "clicked":
-            music ="none selected"
-        if request.form.get("dreams") == "clicked":
-            dreams_tips = db.execute("SELECT * FROM dreams_tips")
-        elif request.form.get("dreams") != "clicked":
-            dreams_tips = "none selected"  
-        return render_template("resources.html", sleep_tips = sleep_tips, meditation_tips = meditation_tips, music = music, dreams_tips = dreams_tips)
+        categories = request.form.getlist("tips")
+        tips = []
+        for category in categories:
+          sleep_tips = db.execute("SELECT category, source, link FROM tips WHERE category = ?", category)
+          for dict in sleep_tips:
+            tips.append(dict)
+        print(tips)
+        # if request.form.get("sleep") == "clicked":
+        #     sleep_tips = db.execute("SELECT category, source, link FROM tips WHERE category = 'sleep'")
+        # elif request.form.get("sleep") != "clicked":
+        #     sleep_tips = []
+        # if request.form.get("meditate") == "clicked":
+        #     meditation_tips = db.execute("SELECT category, source, link FROM tips WHERE category = 'meditation'")
+        # elif request.form.get("meditate") != "clicked":
+        #     meditation_tips = []
+        # if request.form.get("music") == "clicked":
+        #     music_tips = db.execute("SELECT category, source, link FROM tips WHERE category = 'music'")
+        # elif request.form.get("music") != "clicked":
+        #     music_tips = []
+        # if request.form.get("dreams") == "clicked":
+        #     dreams_tips = db.execute("SELECT category, source, link FROM tips WHERE category = 'dreams'")
+        # elif request.form.get("dreams") != "clicked":
+        #     dreams_tips = []
+        # tips = sleep_tips + meditation_tips + music_tips + dreams_tips
+        return render_template("resources.html", tips = tips)
     else:
         return render_template("get_resources.html")
 
@@ -214,5 +220,13 @@ def get_resources():
 def analysis():
     avg_hours = db.execute("SELECT AVG(hours_slept) FROM diary WHERE user_id = ?", session["user_id"])[0]['AVG(hours_slept)']
     avg_snoozes = db.execute("SELECT AVG(snoozes) FROM diary WHERE user_id = ?", session["user_id"])[0]['AVG(snoozes)']
-    return render_template("analysis.html", avg_hours = avg_hours, avg_snoozes = avg_snoozes)
+    time = []
+    x = db.execute("SELECT time FROM diary WHERE user_id = ?", session["user_id"])
+    for element in x:
+        time.append(element["time"])
+    hours = []
+    y = db.execute("SELECT hours_slept FROM diary WHERE user_id = ?", session["user_id"])
+    for element in y:
+        hours.append(element["hours_slept"])
+    return render_template("analysis.html", avg_hours = avg_hours, avg_snoozes = avg_snoozes, time = time, hours = hours)
 
