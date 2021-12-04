@@ -17,8 +17,8 @@
                 <th class="text-end">day</th>
             </tr>
         </thead>
-    <tbody>
-        {% for diary_log in diary_logs %}
+        <tbody>
+            {% for diary_log in diary_logs %}
                 <tr>
                     <td class="text-start">{{diary_log.hours_slept}}</td>
                     <td class="text-end">{{diary_log.snoozes}}</td>
@@ -28,6 +28,7 @@
                     <td class="text-end">{{diary_log.dream}}</td>
                     <td class="text-end">{{diary_log.time}}</td>
                 </tr>
-        {% endfor %}
+            {% endfor %}
+        </tbody>
     </table>
 {% endblock %}
