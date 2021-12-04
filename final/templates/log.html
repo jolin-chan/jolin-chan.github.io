@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block main %}
-    <table class="table tablestriped">
+    <!-- <table class="table tablestriped">
         <thead>
             <tr>
                 <th class="text-start">hours slept</th>
@@ -30,5 +30,19 @@
                 </tr>
             {% endfor %}
         </tbody>
-    </table>
+    </table> -->
+    {% for diary in diarys %}
+    <div class="card">
+        <div class="card-header">
+          {{diary.time}}
+        </div>
+        <div class="card-body">
+          <h5 class="card-text">I woke up feeling like: {{diary.mood}} </h5>
+          <h3 class="card-text">Sleep Quality: {{diary.sleep_quality}}  Hours Slept:{{diary.hours_slept}}  Snoozes: {{diary.snoozes}} </h5>
+          <p class="card-text">My goals for today are: {{diary.daily_goals}} </p>
+          <p class="card-text">Last night I dreamt about: {{diary.dream}}</p>
+          <br>
+        </div>
+      </div>
+    {% endfor %}
 {% endblock %}

@@ -153,6 +153,7 @@ def diary():
         elif request.form.get("vibe") == "15":
             feelings = "tired"
         mood = feelings
+        
         db.execute("INSERT INTO diary (user_id, hours_slept, snoozes, sleep_quality, mood, daily_goals, dream) VALUES (?,?,?,?,?,?,?)", session["user_id"], hours_slept, snoozes, sleep_quality, mood, daily_goals, dream)
         return render_template("submitted.html")
     else:
@@ -161,8 +162,9 @@ def diary():
 @app.route("/log")
 @login_required
 def log():
-    diarys = db.execute("SELECT * FROM diary WHERE user_id = :user_id", user_id=session["user_id"])
-    return render_template("log.html", diarys = diarys)
+    avg_hours = db.execute("SELECT AVG(hours_slept) FROM diary WHERE user_id = ?", session["user_id"])[0]['AVG(hours_slept)']
+    diarys = db.execute("SELECT * FROM diary WHERE user_id = :user_id ORDER BY time DESC", user_id=session["user_id"])
+    return render_template("log.html", diarys = diarys, avg_hours = avg_hours)
 
 @app.route("/change_password", methods=["GET", "POST"])
 @login_required
@@ -189,21 +191,21 @@ def get_resources():
     #if form set equal to 1, then select them from the table
     if request.method == "POST":
         if request.form.get("sleep") == "clicked":
-            sleep = db.execute("SELECT sleep FROM tips")[0]["sleep"]
-        elif request.form.get("sleep_tips") != "clicked":
-            sleep = "None selected"
+            sleep = db.execute("SELECT * FROM sleep_tips")
+        elif request.form.get("sleep") != "clicked":
+            sleep = "none selected"
         if request.form.get("meditate") == "clicked":
-            meditate = db.execute("SELECT meditate FROM tips")[0]["meditate"]
+            meditate = db.execute("SELECT * FROM meditation_tips")
         elif request.form.get("meditate") != "clicked":
-            meditate = "None selected"
+            meditate = "none selected"
         if request.form.get("music") == "clicked":
-            music = db.execute("SELECT music FROM tips")[0]["music"]
+            music = db.execute("SELECT * FROM music")
         elif request.form.get("music") != "clicked":
-            music ="None selected"
+            music ="none selected"
         if request.form.get("dreams") == "clicked":
-            dreams = db.execute("SELECT dreams FROM tips")[0]["dreams"]
+            dreams = db.execute("SELECT * FROM dreams_tips")
         elif request.form.get("dreams") != "clicked":
-            dreams = "None selected"
+            dreams = "none selected"
         return render_template("resources.html", sleep = sleep, meditate = meditate, music = music, dreams = dreams)
     else:
         return render_template("get_resources.html")
