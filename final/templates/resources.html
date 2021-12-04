@@ -5,37 +5,6 @@
 {% endblock %}
 
 {% block main %}
-<<<<<<< HEAD
-    <!-- <p>
-        these articles might help! :) <br>
-        Sleep : {{sleep_tips}}<br>
-        Meditation: {{meditation_tips}}<br>
-        Music : {{music}}<br>
-        Dreams : {{dreams_tips}}<br>
-    </p> -->
-    
-    <p>Sleep tips: </p>
-    <table class="table tablestriped">
-        <thead>
-            <tr>
-                <th class="text-start">source</th>
-                <th class="text-start">link</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for sleep_tips in sleep_tips %}
-            <tr>
-                <td class="text-start">{{sleep_tips.source}}</td>
-                <td class="text-start">{{sleep_tips.link}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-        <br>
-    </table>
-=======
-    <h4 class=header2>we hope these help!</h4>
->>>>>>> 6ac620fbce9897d497746af1138114d1f6a2b255
-
     <table class="styled-table center">
         <tbody>
         {% for tips in tips %}
