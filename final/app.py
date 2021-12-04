@@ -161,6 +161,36 @@ def diary():
 @app.route("/log")
 @login_required
 def log():
-    # diarys = db.execute("SELECT * FROM diary WHERE id = ?", session["user_id"])
     diarys = db.execute("SELECT * FROM diary WHERE user_id = :user_id", user_id=session["user_id"])
     return render_template("log.html", diarys = diarys)
+
+@app.route("/change_password", methods=["GET", "POST"])
+@login_required
+def change_password():
+    if request.method == "POST":
+        new_password = request.form.get("new_password")
+        new_password_confirmation = request.form.get("new_password_confirmation")
+        if not new_password:
+            return apology("Must create a password")
+        if not new_password_confirmation:
+            return apology("Must confirm password")
+        if new_password != new_password_confirmation:
+            return apology("Passwords do not match")
+        new_password_hash = generate_password_hash(new_password)
+        db.execute("UPDATE users SET hash = ? WHERE id = ?", new_password_hash, session["user_id"])
+        return render_template("changed.html", new_password_hash = new_password_hash)
+    else:
+        return render_template("change_password.html")
+
+@app.route("/get_resources", methods=["GET", "POST"])
+@login_required
+def get_resources():
+    if request.method == "POST":
+        sleep = request.form.get("sleep_tips")
+        meditate = request.form.get("medidate")
+        music = request.form.get("music")
+        dreams = request.form.get("dreams")
+        return redirect("/")
+    else:
+        return render_template("get_resources.html")
+
