@@ -158,8 +158,8 @@ def diary():
     else:
         return render_template("diary.html")
 
-@app.route("/history")
+@app.route("/log")
 @login_required
-def history():
-    diary_log = db.execute("SELECT * FROM diary WHERE id = ?", session["user_id"])
-    return render_template("history.html", diary_log = diary_log)
+def log():
+    diarys = db.execute("SELECT * FROM diary WHERE id = ?", session["user_id"])
+    return render_template("log.html", diarys = diarys)
