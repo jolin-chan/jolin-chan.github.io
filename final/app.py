@@ -190,7 +190,7 @@ def get_resources():
     #if form set equal to 1, then select them from the table
     if request.method == "POST":
         if request.form.get("sleep") == "clicked":
-            sleep_tips = db.execute("SELECT * FROM sleep_tips")
+            sleep_tips = db.execute("SELECT source, link FROM tips WHERE category = 'sleep'")
         elif request.form.get("sleep") != "clicked":
             sleep_tips = "none selected"
         if request.form.get("meditate") == "clicked":
