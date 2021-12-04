@@ -140,17 +140,17 @@ def diary():
         #ask for wake up mood
         # mood = request.form.get("mood")
         # mood = "good"
-        if request.form.get("vibe") == "10":
+        if request.form.get("vibe") == "1":
             feelings = "excited"
-        elif request.form.get("vibe") == "11":
+        elif request.form.get("vibe") == "2":
             feelings = "happy"
-        elif request.form.get("vibe") == "12":
+        elif request.form.get("vibe") == "3":
             feelings = "ok"
-        elif request.form.get("vibe") == "13":
+        elif request.form.get("vibe") == "4":
             feelings = "sleepy"
-        elif request.form.get("vibe") == "14":
+        elif request.form.get("vibe") == "5":
             feelings = "sad"
-        elif request.form.get("vibe") == "15":
+        elif request.form.get("vibe") == "6":
             feelings = "tired"
         mood = feelings
         db.execute("INSERT INTO diary (user_id, hours_slept, snoozes, sleep_quality, mood, daily_goals, dream) VALUES (?,?,?,?,?,?,?)", session["user_id"], hours_slept, snoozes, sleep_quality, mood, daily_goals, dream)
