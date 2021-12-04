@@ -185,12 +185,26 @@ def change_password():
 @app.route("/get_resources", methods=["GET", "POST"])
 @login_required
 def get_resources():
+    #if value of button clicked on, then set equal to 1, if not set equal to zero
+    #if form set equal to 1, then select them from the table
     if request.method == "POST":
-        sleep = request.form.get("sleep_tips")
-        meditate = request.form.get("medidate")
-        music = request.form.get("music")
-        dreams = request.form.get("dreams")
-        return redirect("/")
+        if request.form.get("sleep") == "clicked":
+            sleep = db.execute("SELECT sleep FROM tips")[0]["sleep"]
+        elif request.form.get("sleep_tips") != "clicked":
+            sleep = "None selected"
+        if request.form.get("meditate") == "clicked":
+            meditate = db.execute("SELECT meditate FROM tips")[0]["meditate"]
+        elif request.form.get("meditate") != "clicked":
+            meditate = "None selected"
+        if request.form.get("music") == "clicked":
+            music = db.execute("SELECT music FROM tips")[0]["music"]
+        elif request.form.get("music") != "clicked":
+            music ="None selected"
+        if request.form.get("dreams") == "clicked":
+            dreams = db.execute("SELECT dreams FROM tips")[0]["dreams"]
+        elif request.form.get("dreams") != "clicked":
+            dreams = "None selected"
+        return render_template("resources.html", sleep = sleep, meditate = meditate, music = music, dreams = dreams)
     else:
         return render_template("get_resources.html")
 
