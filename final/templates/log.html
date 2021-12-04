@@ -20,13 +20,13 @@
         <tbody>
             {% for diary_log in diary_logs %}
                 <tr>
-                    <td class="text-start">{{diary_log.hours_slept}}</td>
-                    <td class="text-end">{{diary_log.snoozes}}</td>
-                    <td class="text-end">{{diary_log.sleep_quality}}</td>
-                    <td class="text-end">{{diary_log.mood}}</td>
-                    <td class="text-end">{{diary_log.daily_goals}}</td>
-                    <td class="text-end">{{diary_log.dream}}</td>
-                    <td class="text-end">{{diary_log.time}}</td>
+                    <td class="text-start">{{diary.hours_slept}}</td>
+                    <td class="text-end">{{diary.snoozes}}</td>
+                    <td class="text-end">{{diary.sleep_quality}}</td>
+                    <td class="text-end">{{diary.mood}}</td>
+                    <td class="text-end">{{diary.daily_goals}}</td>
+                    <td class="text-end">{{diary.dream}}</td>
+                    <td class="text-end">{{diary.time}}</td>
                 </tr>
             {% endfor %}
         </tbody>
