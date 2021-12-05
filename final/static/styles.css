@@ -98,3 +98,9 @@ table.center
 {
     box-shadow: 0 8px 16px 0 #FFFAEA
 }
+
+canvas
+{
+    margin-left: auto;
+    margin-right: auto;
+}

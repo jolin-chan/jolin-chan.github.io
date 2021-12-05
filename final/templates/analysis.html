@@ -118,6 +118,46 @@ Morning Mood Log: <br>
 
 </body>
 </html>
+  average hours slept: {{avg_hours}}
+  <br>
+  average snoozes: {{avg_snoozes}}
+
+  <br>
+  <br>
+
+  <p style="font-family:Gamja Flower; font-size:30px">sleep log:</p>
+  <!DOCTYPE html>
+  <html>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+      <body>
+        <canvas class="center" id="myChart" style="width:100%;max-width:600px"></canvas>
+
+        <script>
+
+        new Chart("myChart", {
+          type: "line",
+          data: {
+            labels: {{time | safe}},
+            datasets: [{
+              label : "Data points",
+              data : {{ hours | safe}},
+              fill: false,
+              lineTension: 0,
+              backgroundColor: "rgba(0,0,255,1.0)",
+              borderColor: "rgba(0,0,255,0.1)",
+            }]
+          },
+          options: {
+            legend: {display: false},
+            scales: {
+              yAxes: [{ticks: {min: 0, max:24}}],
+            }
+          }
+        });
+        </script>
+
+      </body>
+  </html>
 {% endblock %}
 
 
