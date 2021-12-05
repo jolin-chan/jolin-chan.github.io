@@ -95,7 +95,7 @@ def register():
         hash = generate_password_hash(password)
         # Insert new user and log user in
         db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", username, hash)
-        return render_template("index.html", username = username)
+        return render_template("index.html")
     else:
         return render_template("register.html")
 
@@ -129,9 +129,6 @@ def diary():
         daily_goals = request.form.get("daily_goals")
         #ask for dreams
         dream = request.form.get("dream")
-        #query into diary database
-        # sleep_quality = request.form.get("sleep_quality")
-        # sleep_quality = "good"
         if request.form.get("sleep") == "1":
             sq = "Best Night Ever!!"
         elif request.form.get("sleep") == "2":
