@@ -106,16 +106,6 @@ def index():
     username = session["user_id"]
     return render_template("index.html", username = username)
 
-# def errorhandler(e):
-#     if not isinstance(e, HTTPException):
-#         e = InternalServerError()
-#     return error(e.name, e.code)
-
-# # Listen for errors
-# for code in default_exceptions:
-#     app.errorhandler(code)(errorhandler)
-
-
 #SECOND PAGE FUNCTIONALITIES
 @app.route("/diary", methods=["GET", "POST"])
 @login_required
@@ -158,7 +148,7 @@ def diary():
         db.execute("INSERT INTO diary (user_id, hours_slept, snoozes, sleep_quality, mood, daily_goals, dream) VALUES (?,?,?,?,?,?,?)", session["user_id"], hours_slept, snoozes, sleep_quality, mood, daily_goals, dream)
         return render_template("submitted.html")
     else:
-        # get username to make it personal
+        # Get username to make it personal
         username = session["user_id"]
         return render_template("diary.html", username = username)
 
