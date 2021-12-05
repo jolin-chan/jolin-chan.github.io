@@ -91,12 +91,6 @@ table.center
 .card
 {
     box-shadow: 0 4px 8px 0 #FFFAEA;
-    transition: 0.3s;
-}
-
-.card:hover
-{
-    box-shadow: 0 8px 16px 0 #FFFAEA
 }
 
 canvas
@@ -110,4 +104,44 @@ input[type="text"]
     width: 800px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.margins
+{
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+ul.nav
+{
+    margin:0;
+    padding:0;
+    list-style:none;
+    height:50px;
+    line-height:50px;
+    background:#FFFAEA;
+    font-family: Quicksand, sans-serif;
+    font-size: 20px;
+}
+
+ul.nav li
+{
+    border-right:1px solid #FFFAEA; /* you can change the border color matching to your background color */
+    float:left;
+    color: #FFF3CD;
+}
+
+ul.nav a
+{
+    display: block;
+    padding: 0 28px;
+    color: black;
+    text-decoration:none;
+}
+
+ul.nav a:hover,
+ul.nav li.current a
+{
+    background:#FAE59B;
 }

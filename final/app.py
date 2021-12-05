@@ -7,7 +7,7 @@ from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from helpers import login_required, apology
+from helpers import login_required
 
 # Configure application
 app = Flask(__name__)
@@ -47,15 +47,15 @@ def login():
     if request.method == "POST":
         # Ensure username was submitted
         if not request.form.get("username"):
-            return apology("must provide username", 403)
+            return render_template("error.html")
         # Ensure password was submitted
         elif not request.form.get("password"):
-            return apology("must provide password", 403)
+            return render_template("error.html")
         # Query database for username
         rows = db.execute("SELECT * FROM users WHERE username = ?", request.form.get("username"))
         # Ensure username exists and password is correct
         if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
-            return apology("invalid username and/or password", 403)
+            return render_template("error.html")
         # Remember which user has logged in
         session["user_id"] = rows[0]["id"]
         username = rows[0]["username"]
@@ -80,18 +80,18 @@ def register():
         confirmation = request.form.get("confirmation")
         # Ensure user input information properly
         if not username:
-            return apology("Must provide username", 400)
+            return render_template("error.html")
         if not password:
-            return apology("Must provide password", 400)
+            return render_template("error.html")
         if not confirmation:
-            return apology("Must provide confirmation", 400)
+            return render_template("error.html")
         # Ensure username is not taken
         rows = db.execute("SELECT * FROM users WHERE username = ?", username)
         if len(rows) == 1:
-            return apology("Username already exists", 400)
+            return render_template("error.html")
         # Ensure user verified password and check if passwords match
         if password != confirmation:
-            return apology("Passwords must match", 400)
+            return render_template("error.html")
         # Hash password
         hash = generate_password_hash(password)
         # Insert new user and log user in
@@ -106,14 +106,14 @@ def index():
     username = session["user_id"]
     return render_template("index.html", username = username)
 
-def errorhandler(e):
-    if not isinstance(e, HTTPException):
-        e = InternalServerError()
-    return apology(e.name, e.code)
+# def errorhandler(e):
+#     if not isinstance(e, HTTPException):
+#         e = InternalServerError()
+#     return error(e.name, e.code)
 
-# Listen for errors
-for code in default_exceptions:
-    app.errorhandler(code)(errorhandler)
+# # Listen for errors
+# for code in default_exceptions:
+#     app.errorhandler(code)(errorhandler)
 
 
 #SECOND PAGE FUNCTIONALITIES
@@ -175,11 +175,11 @@ def change_password():
         new_password = request.form.get("new_password")
         new_password_confirmation = request.form.get("new_password_confirmation")
         if not new_password:
-            return apology("must create a password")
+            return render_template("error.html")
         if not new_password_confirmation:
-            return apology("must confirm password")
+            return render_template("error.html")
         if new_password != new_password_confirmation:
-            return apology("passwords do not match")
+            return render_template("error.html")
         new_password_hash = generate_password_hash(new_password)
         db.execute("UPDATE users SET hash = ? WHERE id = ?", new_password_hash, session["user_id"])
         return render_template("changed.html", new_password_hash = new_password_hash)

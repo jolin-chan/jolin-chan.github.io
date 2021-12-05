@@ -41,7 +41,32 @@
 
     <body>
 
-        <nav class="bg-light border navbar navbar-expand-md navbar-light">
+        <nav style="background-color:#FFFAEA">
+            <div class="container-fluid">
+                <div>
+                    {% if session["user_id"] %}
+                        <ul class="nav">
+                            <img src="static/bunnyicon.jpg" width="50" alt="bunny icon" class="d-inline-block align-middle mr-2">
+                            <li><a href="/index">home</a></li>
+                            <li><a href="/diary">diary</a></li>
+                            <li><a href="/analysis">analysis</a></li>
+                            <li><a href="/log">log</a></li>
+                            <li><a href="/get_resources">resources</a></li>
+                            <li><a href="/change_password">change password</a></li>
+                            <li><a href="/logout">log out</a></li>
+                        </ul>
+                    {% else %}
+                        <ul class="nav">
+                            <li><a href="/register">register</a></li>
+                            <li><a href="/login">log in</a></li>
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    
+        
+        <!-- <nav class="bg-light border navbar navbar-expand-md navbar-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/"><span class="header2" style="font-size:40px">SleepS50</span></a>
                 <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar" data-bs-toggle="collapse" type="button">
@@ -67,7 +92,7 @@
                     {% endif %}
                 </div>
             </div>
-        </nav>
+        </nav> -->
 
         <!--Page title-->
         <img src="/static/SleepS50.jpg" alt="SleepS50" width="100%"> 
