@@ -5,25 +5,17 @@
 {% endblock %}
 
 {% block main %}
+<form action="/index">
     <div class="container">
         <br>
         <h4 class=header2>this is SleepS50</h4>
             <div>
                <p>
-                    welcome! we're here to help you improve your sleep and well-being, one night at a time. all you need to do is log your data every morning, and we'll help you track your progress. register or log in to get started!  
+                    welcome {{username}}! <br>
+                    <img src="/static/welcome.jpg" alt="welcome bunny" width="50%"><br>
+                    to get started, go ahead and make a diary entry for today and then view your sleep analysis! also feel free to check out the list of resources that we have avaliable for you to view and download :)
                </p>
             </div>
-    
-            <div class="container">
-                <div class="row">
-                  <div class="col">
-                    <a href="/change_password" class="button">change password</a>
-                  </div>
-                  <div class="col">
-                    <a href="/login" class="button">log in</a>
-                  </div>
-                </div>
-              </div>
-    
     </div>
+  </form>
 {% endblock %}

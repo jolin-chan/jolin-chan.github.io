@@ -36,8 +36,8 @@ def after_request(response):
     return response
 
 @app.route("/")
-def index():
-    return render_template("index.html")
+def home():
+    return render_template("home.html")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -59,7 +59,7 @@ def login():
         # Remember which user has logged in
         session["user_id"] = rows[0]["id"]
         # Redirect user to home page
-        return redirect("/")
+        return render_template("index.html")
     # User reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("login.html")
@@ -95,9 +95,15 @@ def register():
         hash = generate_password_hash(password)
         # Insert new user and log user in
         db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", username, hash)
-        return redirect("/")
+        return render_template("index.html", username = username)
     else:
         return render_template("register.html")
+
+@app.route("/index")
+@login_required
+def index():
+    username = session["user_id"]
+    return render_template("index.html", username = username)
 
 def errorhandler(e):
     if not isinstance(e, HTTPException):
@@ -190,23 +196,6 @@ def get_resources():
           sleep_tips = db.execute("SELECT category, source, link FROM tips WHERE category = ?", category)
           for dict in sleep_tips:
             tips.append(dict)
-        # if request.form.get("sleep") == "clicked":
-        #     sleep_tips = db.execute("SELECT category, source, link FROM tips WHERE category = 'sleep'")
-        # elif request.form.get("sleep") != "clicked":
-        #     sleep_tips = []
-        # if request.form.get("meditate") == "clicked":
-        #     meditation_tips = db.execute("SELECT category, source, link FROM tips WHERE category = 'meditation'")
-        # elif request.form.get("meditate") != "clicked":
-        #     meditation_tips = []
-        # if request.form.get("music") == "clicked":
-        #     music_tips = db.execute("SELECT category, source, link FROM tips WHERE category = 'music'")
-        # elif request.form.get("music") != "clicked":
-        #     music_tips = []
-        # if request.form.get("dreams") == "clicked":
-        #     dreams_tips = db.execute("SELECT category, source, link FROM tips WHERE category = 'dreams'")
-        # elif request.form.get("dreams") != "clicked":
-        #     dreams_tips = []
-        # tips = sleep_tips + meditation_tips + music_tips + dreams_tips
         return render_template("resources.html", tips = tips)
     else:
         return render_template("get_resources.html")
