@@ -149,8 +149,8 @@ def diary():
         return render_template("submitted.html")
     else:
         # Get username to make it personal
-        username = session["user_id"]
-        return render_template("diary.html", username = username)
+        #create a table that has the user_id with the username
+        return render_template("diary.html")
 
 @app.route("/log")
 @login_required
