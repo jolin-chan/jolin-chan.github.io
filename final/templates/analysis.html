@@ -13,17 +13,17 @@ Sleep Log: <br>
 <!DOCTYPE html>
 <html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <body>
-<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+<canvas id="sleeplog" style="width:100%;max-width:600px"></canvas>
 
 <script>
-
-new Chart("myChart", {
+new Chart("sleeplog", {
   type: "line",
   data: {
     labels: {{time | safe}},
     datasets: [{
-      label : "Data points",
       data : {{ hours | safe}},
       fill: false,
       lineTension: 0,
@@ -38,7 +38,83 @@ new Chart("myChart", {
     }
   }
 });
-</script>
+</script> <br>
+
+Sleep Quality Log: <br>
+<canvas id="sleepquality" style="width:100%;max-width:600px"></canvas>
+<script>
+  var xValues = ["BEST NIGHT EVER \^_^/ !!", "Good", "Eh... it was okay ", "Not so great", "Didn't Sleep a Wink T_T"];
+  var yValues = [{{ A | safe}}, {{ B | safe}}, {{ C | safe}}, {{ D | safe}}, {{ E | safe}}];
+  // var yValues = [1, 2, 3, 4, 5];
+  var barColors = ["red", "green","blue","orange","brown"];
+  
+  new Chart("sleepquality", {
+    type: "bar",
+    data: {
+      labels: xValues,
+      datasets: [{
+        backgroundColor: barColors,
+        data: yValues,
+      }]
+    },
+    options: {
+      legend: {display: false},
+      // scales: {
+      // yAxes: [{min: 0}],
+      // }
+      title: {
+        display: true,
+        text: ""
+      }
+    }
+  });
+  </script><br>
+
+Morning Mood Log: <br>
+<canvas id="moodlog" style="width:100%;max-width:600px"></canvas>
+
+<!-- <input type="radio" id="vibe" name="vibe" value="10">
+<label for="html">&#128518</label>
+<input type="radio" id="vibe" name="vibe" value="11">
+<label for="html">&#128522</label>
+<input type="radio" id="vibe" name="vibe" value="12">
+<label for="html">&#128528</label>
+<input type="radio" id="vibe" name="vibe" value="13">
+<label for="html">&#128554</label>
+<input type="radio" id="vibe" name="vibe" value="14">
+<label for="html">&#128579</label>
+<input type="radio" id="vibe" name="vibe" value="15">
+<label for="html">&#128580</label> -->
+
+<script>
+  var jValues = ["Excited", "Happy", "Ok", "Sleepy", "Sad", "Tired"];
+  var kValues = [{{ Z | safe}}, {{ Y | safe}}, {{ X | safe}}, {{ W | safe}}, {{ S | safe}}, {{ V | safe}}];
+  var barColors = [
+    "#b91d47",
+    "#00aba9",
+    "#2b5797",
+    "#e8c3b9",
+    "#1e7145", 
+    "RED"
+  ];
+  
+  new Chart("moodlog", {
+    type: "doughnut",
+    data: {
+      labels: jValues,
+      datasets: [{
+        backgroundColor: barColors,
+        data: kValues
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: ""
+      }
+    }
+  });
+  </script>
 
 </body>
 </html>

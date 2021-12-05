@@ -138,8 +138,6 @@ def diary():
             sq = "Didn't sleep a wink T_T"
         sleep_quality = sq
         #ask for wake up mood
-        # mood = request.form.get("mood")
-        # mood = "good"
         if request.form.get("vibe") == "10":
             feelings = "excited"
         elif request.form.get("vibe") == "11":
@@ -153,7 +151,6 @@ def diary():
         elif request.form.get("vibe") == "15":
             feelings = "tired"
         mood = feelings
-        
         db.execute("INSERT INTO diary (user_id, hours_slept, snoozes, sleep_quality, mood, daily_goals, dream) VALUES (?,?,?,?,?,?,?)", session["user_id"], hours_slept, snoozes, sleep_quality, mood, daily_goals, dream)
         return render_template("submitted.html")
     else:
@@ -220,6 +217,7 @@ def get_resources():
 def analysis():
     avg_hours = db.execute("SELECT AVG(hours_slept) FROM diary WHERE user_id = ?", session["user_id"])[0]['AVG(hours_slept)']
     avg_snoozes = db.execute("SELECT AVG(snoozes) FROM diary WHERE user_id = ?", session["user_id"])[0]['AVG(snoozes)']
+    #for the sleeping hour log
     time = []
     x = db.execute("SELECT time FROM diary WHERE user_id = ?", session["user_id"])
     for element in x:
@@ -228,5 +226,18 @@ def analysis():
     y = db.execute("SELECT hours_slept FROM diary WHERE user_id = ?", session["user_id"])
     for element in y:
         hours.append(element["hours_slept"])
-    return render_template("analysis.html", avg_hours = avg_hours, avg_snoozes = avg_snoozes, time = time, hours = hours)
-
+    #for sleep quality log
+    A = db.execute("SELECT COUNT(sleep_quality) FROM diary WHERE user_id = ? AND sleep_quality = ?", session["user_id"], "Best Night Ever!!")[0]["COUNT(sleep_quality)"]
+    B = db.execute("SELECT COUNT(sleep_quality) FROM diary WHERE user_id = ? AND sleep_quality = ?", session["user_id"], "Good")[0]["COUNT(sleep_quality)"]
+    C = db.execute("SELECT COUNT(sleep_quality) FROM diary WHERE user_id = ? AND sleep_quality = ?", session["user_id"], "Eh.. it was okay")[0]["COUNT(sleep_quality)"]
+    D = db.execute("SELECT COUNT(sleep_quality) FROM diary WHERE user_id = ? AND sleep_quality = ?", session["user_id"], "Not so great")[0]["COUNT(sleep_quality)"]
+    E = db.execute("SELECT COUNT(sleep_quality) FROM diary WHERE user_id = ? AND sleep_quality = ?", session["user_id"], "Didn't sleep a wink")[0]["COUNT(sleep_quality)"]
+    #for mood log
+    Z = db.execute("SELECT COUNT(mood) FROM diary WHERE user_id = ? AND mood = ?", session["user_id"], "Excited")[0]["COUNT(mood)"]
+    Y = db.execute("SELECT COUNT(mood) FROM diary WHERE user_id = ? AND mood = ?", session["user_id"], "Happy")[0]["COUNT(mood)"]
+    X = db.execute("SELECT COUNT(mood) FROM diary WHERE user_id = ? AND mood = ?", session["user_id"], "Ok")[0]["COUNT(mood)"]
+    W = db.execute("SELECT COUNT(mood) FROM diary WHERE user_id = ? AND mood = ?", session["user_id"], "Sleepy")[0]["COUNT(mood)"]
+    S = db.execute("SELECT COUNT(mood) FROM diary WHERE user_id = ? AND mood = ?", session["user_id"], "Sad")[0]["COUNT(mood)"]
+    V = db.execute("SELECT COUNT(mood) FROM diary WHERE user_id = ? AND mood = ?", session["user_id"], "Tired")[0]["COUNT(mood)"]
+    return render_template("analysis.html", avg_hours = avg_hours, avg_snoozes = avg_snoozes, time = time, hours = hours, A = A, B = B, C = C, D = D, E = E, Z = Z, Y = Y, W = W, X = X, V = V, S = S)
+ 
