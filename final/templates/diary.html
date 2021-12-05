@@ -5,68 +5,66 @@
 {% endblock %}
 
 {% block main %}
-<form action="/diary" method="post">
-    <div class = "header">
-        <p class="title">SleepS50</p>
-    </div>
-
-    <div class="mb-3">
-        <label for="formGroupExampleInput" class="form-label"><b>how many hours did you sleep last night?</b></label>
-        <input type="text" class="form-control" id="hours_slept" name="hours_slept" placeholder="input a number!">
-    </div>
-    <div class="mb-3">
-        <label for="formGroupExampleInput2" class="form-label"><b>how many times did you snooze your alarm this morning? (hint: dont lie!)</b></label>
-        <input type="text" class="form-control" id="snoozes" name="snoozes" placeholder="input a number!">
-    </div>
-    <!--something for sleep quality and sleeping mood-->
-    <!--sleep quality-->
-    <div class="mb-3">
-        <p><b>How was your sleep last night?</b></p>
-        <input type="radio" id="sleep" name="sleep" value="1">
-        <label for="html">BEST NIGHT EVER!</label>
-        <input type="radio" id="sleep" name="sleep" value="2">
-        <label for="html">good</label>
-        <input type="radio" id="sleep" name="sleep" value="3">
-        <label for="html">eh...it was okay</label>
-        <input type="radio" id="sleep" name="sleep" value="4">
-        <label for="html">not so good</label>
-        <input type="radio" id="sleep" name="sleep" value="5">
-        <label for="html">didn't sleep a wink T_T</label>
- 
-    </div>
-    <div class="mb-3">
-        <p><b>Your morning mood?</b></p>
-        <input type="radio" id="vibe" name="vibe" value="10">
-        <label for="html">&#128518</label>
-        <input type="radio" id="vibe" name="vibe" value="11">
-        <label for="html">&#128522</label>
-        <input type="radio" id="vibe" name="vibe" value="12">
-        <label for="html">&#128528</label>
-        <input type="radio" id="vibe" name="vibe" value="13">
-        <label for="html">&#128554</label>
-        <input type="radio" id="vibe" name="vibe" value="14">
-        <label for="html">&#128579</label>
-        <input type="radio" id="vibe" name="vibe" value="15">
-        <label for="html">&#128580</label>
-        
-    </div>
-    <div class="mb-3">
-        <label for="formGroupExampleInput2" class="form-label"><b>what are your goals for today?</b></label>
-        <input type="text" class="form-control" id="daily_goals" name="daily_goals" placeholder="be brave, be bold, and be courageous!">
-    </div> 
-    <!-- <div class="mb-3">
-        <label for="formGroupExampleInput2" class="form-label">what are your goals for today?</label>
-        <input type="text" class="form-control" id="sleep_quality" name="sleep_quality" placeholder="be brave, be bold, and be courageous!">
-    </div>
-    <div class="mb-3">
-        <label for="formGroupExampleInput2" class="form-label">what are your goals for today?</label>
-        <input type="text" class="form-control" id="mood" name="mood" placeholder="be brave, be bold, and be courageous!">
-    </div> -->
-    <div class="mb-3">
-        <label for="formGroupExampleInput2" class="form-label"><b>did you have a dream last night? do you remember it?</b></label>
-        <input type="text" class="form-control" id="dream" name="dream" placeholder="record your dream last night if you remember :)">
-    </div>
-    </div>
-    <button class="btn btn-primary buttonStyle" type="submit">submit diary</button>
-</form>
+    <h4 class=header2>it's a new day, {{username}}! how was last night?</h4>
+    <br>
+    <form action="/diary" method="post">
+        <div class="mb-3">
+            <label for="formGroupExampleInput" class="form-label"><b>how many hours did you sleep last night?</b></label>
+            <input type="text" class="form-control" id="hours_slept" name="hours_slept" placeholder="input a number!">
+        </div>
+        <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label"><b>how many times did you snooze your alarm this morning? (hint: dont lie!)</b></label>
+            <input type="text" class="form-control" id="snoozes" name="snoozes" placeholder="input a number!">
+        </div>
+        <!--something for sleep quality and sleeping mood-->
+        <!--sleep quality-->
+        <div class="mb-3">
+            <p><b>how was your sleep last night?</b></p>
+            <input type="radio" id="sleep" name="sleep" value="1">
+            <label for="html">BEST NIGHT EVER!</label>
+            <input type="radio" id="sleep" name="sleep" value="2">
+            <label for="html">good</label>
+            <input type="radio" id="sleep" name="sleep" value="3">
+            <label for="html">eh...it was okay</label>
+            <input type="radio" id="sleep" name="sleep" value="4">
+            <label for="html">not so good</label>
+            <input type="radio" id="sleep" name="sleep" value="5">
+            <label for="html">didn't sleep a wink T_T</label>
+    
+        </div>
+        <div class="mb-3">
+            <p><b>your morning mood?</b></p>
+            <input type="radio" id="vibe" name="vibe" value="10">
+            <label for="html">&#128518</label>
+            <input type="radio" id="vibe" name="vibe" value="11">
+            <label for="html">&#128522</label>
+            <input type="radio" id="vibe" name="vibe" value="12">
+            <label for="html">&#128528</label>
+            <input type="radio" id="vibe" name="vibe" value="13">
+            <label for="html">&#128554</label>
+            <input type="radio" id="vibe" name="vibe" value="14">
+            <label for="html">&#128579</label>
+            <input type="radio" id="vibe" name="vibe" value="15">
+            <label for="html">&#128580</label>
+            
+        </div>
+        <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label"><b>what are your goals for today?</b></label>
+            <input type="text" class="form-control" id="daily_goals" name="daily_goals" placeholder="be brave, be bold, and be courageous!">
+        </div> 
+        <!-- <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label">what are your goals for today?</label>
+            <input type="text" class="form-control" id="sleep_quality" name="sleep_quality" placeholder="be brave, be bold, and be courageous!">
+        </div>
+        <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label">what are your goals for today?</label>
+            <input type="text" class="form-control" id="mood" name="mood" placeholder="be brave, be bold, and be courageous!">
+        </div> -->
+        <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label"><b>did you have a dream last night? do you remember it?</b></label>
+            <input type="text" class="form-control" id="dream" name="dream" placeholder="record your dream last night if you remember :)">
+        </div>
+        </div>
+        <button class="btn btn-primary buttonStyle" type="submit">submit diary</button>
+    </form>
 {% endblock %}

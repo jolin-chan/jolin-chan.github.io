@@ -6,98 +6,104 @@
 
 {% block main %}
 
-<b>Average Hours Slept :</b> {{avg_hours}} <br>
-<b>Average Snoozes :</b> {{avg_snoozes}} <br>
+  <h4 class=header2>how has your sleep been?</h4>
 
-<b>Sleep Log:</b> <br>
-<!DOCTYPE html>
-<html>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-<body>
-<canvas id="sleeplog" style="width:100%;max-width:600px"></canvas>
+  <br>
+    <p>average hours slept: {{avg_hours}}</p>
+    <p>average snoozes: {{avg_snoozes}}</p>
+  <br>
+    <p>sleep log:</p>
 
-<script>
-new Chart("sleeplog", {
-  type: "line",
-  data: {
-    labels: {{time | safe}},
-    datasets: [{
-      data : {{ hours | safe}},
-      fill: false,
-      lineTension: 0,
-      backgroundColor: "rgba(0,0,255,1.0)",
-      borderColor: "rgba(0,0,255,0.1)",
-    }]
-  },
-  options: {
-    legend: {display: false},
-    scales: {
-      yAxes: [{ticks: {min: 0, max:24}}],
-    }
-  }
-});
-</script> <br>
+  <!DOCTYPE html>
+  <html>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <body>
+  <canvas id="sleeplog" style="width:100%;max-width:600px"></canvas>
 
-<b>Sleep Quality Log:</b> <br>
-<canvas id="sleepquality" style="width:100%;max-width:600px"></canvas>
-<script>
-  var xValues = ["BEST NIGHT EVER \^_^/ !!", "Good", "Eh... it was okay ", "Not so great", "Didn't Sleep a Wink T_T"];
-  var yValues = [{{ A | safe}}, {{ B | safe}}, {{ C | safe}}, {{ D | safe}}, {{ E | safe}}];
-  var barColors = ["red", "green","blue","orange","brown"];
-  
-  new Chart("sleepquality", {
-    type: "bar",
+  <script>
+  new Chart("sleeplog", {
+    type: "line",
     data: {
-      labels: xValues,
+      labels: {{time | safe}},
       datasets: [{
-        backgroundColor: barColors,
-        data: yValues,
+        data : {{ hours | safe}},
+        fill: false,
+        lineTension: 0,
+        backgroundColor: "rgba(0,0,255,1.0)",
+        borderColor: "#FFCACA",
       }]
     },
     options: {
       legend: {display: false},
-      title: {
-        display: true,
-        text: ""
+      scales: {
+        yAxes: [{ticks: {min: 0, max:24}}],
       }
     }
   });
-  </script><br>
+  </script> <br>
 
-<b>Morning Mood Log:</b> <br>
-<canvas id="moodlog" style="width:100%;max-width:600px"></canvas>
-<script>
-  var jValues = ["Excited", "Happy", "Ok", "Sleepy", "Sad", "Tired"];
-  var kValues = [{{ Z | safe}}, {{ Y | safe}}, {{ X | safe}}, {{ W | safe}}, {{ S | safe}}, {{ V | safe}}];
-  var barColors = [
-    "#b91d47",
-    "#00aba9",
-    "#2b5797",
-    "#e8c3b9",
-    "#1e7145", 
-    "RED"
-  ];
-  
-  new Chart("moodlog", {
-    type: "doughnut",
-    data: {
-      labels: jValues,
-      datasets: [{
-        backgroundColor: barColors,
-        data: kValues
-      }]
-    },
-    options: {
-      title: {
-        display: true,
-        text: ""
+  <br>
+    <p>sleep quality log:</p>
+  <canvas id="sleepquality" style="width:100%;max-width:600px"></canvas>
+  <script>
+    var xValues = ["BEST NIGHT EVER \^_^/ !!", "good", "eh... it was okay ", "not so great", "didn't sleep a Wink T_T"];
+    var yValues = [{{ A | safe}}, {{ B | safe}}, {{ C | safe}}, {{ D | safe}}, {{ E | safe}}];
+    var barColors = ["#FFCACA", "#FEEDB1","#BCF6E1", "#B5E6FA", "#FAC9F8"];
+    
+    new Chart("sleepquality", {
+      type: "bar",
+      data: {
+        labels: xValues,
+        datasets: [{
+          backgroundColor: barColors,
+          data: yValues,
+        }]
+      },
+      options: {
+        legend: {display: false},
+        title: {
+          display: true,
+          text: ""
+        }
       }
-    }
-  });
-  </script>
-  </html>
+    });
+    </script><br>
+
+  <br>
+    <p>morning mood log:</p>
+  <canvas id="moodlog" style="width:100%;max-width:600px"></canvas>
+  <script>
+    var jValues = ["excited", "happy", "ok", "sleepy", "sad", "tired"];
+    var kValues = [{{ Z | safe}}, {{ Y | safe}}, {{ X | safe}}, {{ W | safe}}, {{ S | safe}}, {{ V | safe}}];
+    var barColors = [
+      "#FFCACA",
+      "#FFD8B5",
+      "#FEEDB1",
+      "#BCF6E1",
+      "#B5E6FA",
+      "#FAC9F8"
+    ];
+    
+    new Chart("moodlog", {
+      type: "doughnut",
+      data: {
+        labels: jValues,
+        datasets: [{
+          backgroundColor: barColors,
+          data: kValues
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: ""
+        }
+      }
+    });
+    </script>
+    </html>
 {% endblock %}
 
 

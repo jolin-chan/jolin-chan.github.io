@@ -158,7 +158,9 @@ def diary():
         db.execute("INSERT INTO diary (user_id, hours_slept, snoozes, sleep_quality, mood, daily_goals, dream) VALUES (?,?,?,?,?,?,?)", session["user_id"], hours_slept, snoozes, sleep_quality, mood, daily_goals, dream)
         return render_template("submitted.html")
     else:
-        return render_template("diary.html")
+        # get username to make it personal
+        username = session["user_id"]
+        return render_template("diary.html", username = username)
 
 @app.route("/log")
 @login_required
@@ -173,11 +175,11 @@ def change_password():
         new_password = request.form.get("new_password")
         new_password_confirmation = request.form.get("new_password_confirmation")
         if not new_password:
-            return apology("Must create a password")
+            return apology("must create a password")
         if not new_password_confirmation:
-            return apology("Must confirm password")
+            return apology("must confirm password")
         if new_password != new_password_confirmation:
-            return apology("Passwords do not match")
+            return apology("passwords do not match")
         new_password_hash = generate_password_hash(new_password)
         db.execute("UPDATE users SET hash = ? WHERE id = ?", new_password_hash, session["user_id"])
         return render_template("changed.html", new_password_hash = new_password_hash)
@@ -190,6 +192,7 @@ def get_resources():
     if request.method == "POST":
         categories = request.form.getlist("tips")
         tips = []
+        # find selected categories and add together
         for category in categories:
           sleep_tips = db.execute("SELECT category, source, link FROM tips WHERE category = ?", category)
           for dict in sleep_tips:
