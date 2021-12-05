@@ -6,10 +6,10 @@
 
 {% block main %}
 
-Average Hours Slept : {{avg_hours}} <br>
-Average Snoozes : {{avg_snoozes}} <br>
+<b>Average Hours Slept :</b> {{avg_hours}} <br>
+<b>Average Snoozes :</b> {{avg_snoozes}} <br>
 
-Sleep Log: <br>
+<b>Sleep Log:</b> <br>
 <!DOCTYPE html>
 <html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
@@ -40,7 +40,7 @@ new Chart("sleeplog", {
 });
 </script> <br>
 
-Sleep Quality Log: <br>
+<b>Sleep Quality Log:</b> <br>
 <canvas id="sleepquality" style="width:100%;max-width:600px"></canvas>
 <script>
   var xValues = ["BEST NIGHT EVER \^_^/ !!", "Good", "Eh... it was okay ", "Not so great", "Didn't Sleep a Wink T_T"];
@@ -66,11 +66,10 @@ Sleep Quality Log: <br>
   });
   </script><br>
 
-Morning Mood Log: <br>
+<b>Morning Mood Log:</b> <br>
 <canvas id="moodlog" style="width:100%;max-width:600px"></canvas>
 <script>
   var jValues = ["Excited", "Happy", "Ok", "Sleepy", "Sad", "Tired"];
-  var kValues = [1, 2, 3, 4, 5, 6]
   var kValues = [{{ Z | safe}}, {{ Y | safe}}, {{ X | safe}}, {{ W | safe}}, {{ S | safe}}, {{ V | safe}}];
   var barColors = [
     "#b91d47",

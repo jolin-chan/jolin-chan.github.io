@@ -58,8 +58,9 @@ def login():
             return apology("invalid username and/or password", 403)
         # Remember which user has logged in
         session["user_id"] = rows[0]["id"]
+        username = rows[0]["username"]
         # Redirect user to home page
-        return render_template("index.html")
+        return render_template("index.html", username = username)
     # User reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("login.html")
@@ -95,7 +96,7 @@ def register():
         hash = generate_password_hash(password)
         # Insert new user and log user in
         db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", username, hash)
-        return render_template("index.html")
+        return render_template("login.html")
     else:
         return render_template("register.html")
 

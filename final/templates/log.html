@@ -8,13 +8,13 @@
     {% for diary in diarys %}
     <div class="card">
         <div class="card-header">
-          {{diary.time}}
+          <b>{{diary.time}}</b>
         </div>
         <div class="card-body">
-          <p class="card-text">i woke up feeling: {{diary.mood}}</p>
-          <p class="card-text">sleep quality: {{diary.sleep_quality}}  |  hours slept: {{diary.hours_slept}}  |  snoozes: {{diary.snoozes}}</p>
-          <p class="card-text">my goals for today are: {{diary.daily_goals}}</p>
-          <p class="card-text">last night I dreamt about: {{diary.dream}}</p>
+          <p class="card-text"><b>i woke up feeling:</b> {{diary.mood}}</p>
+          <p class="card-text"><b>sleep quality:</b> {{diary.sleep_quality}}  <b>|  hours slept:</b> {{diary.hours_slept}}  <b>|  snoozes:</b> {{diary.snoozes}}</p>
+          <p class="card-text"><b>my goals for today are:</b> {{diary.daily_goals}}</p>
+          <p class="card-text"><b>last night I dreamt about:</b> {{diary.dream}}</p>
         </div>
     </div>
     <br>
