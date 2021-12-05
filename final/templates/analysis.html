@@ -45,7 +45,6 @@ Sleep Quality Log: <br>
 <script>
   var xValues = ["BEST NIGHT EVER \^_^/ !!", "Good", "Eh... it was okay ", "Not so great", "Didn't Sleep a Wink T_T"];
   var yValues = [{{ A | safe}}, {{ B | safe}}, {{ C | safe}}, {{ D | safe}}, {{ E | safe}}];
-  // var yValues = [1, 2, 3, 4, 5];
   var barColors = ["red", "green","blue","orange","brown"];
   
   new Chart("sleepquality", {
@@ -72,22 +71,9 @@ Sleep Quality Log: <br>
 
 Morning Mood Log: <br>
 <canvas id="moodlog" style="width:100%;max-width:600px"></canvas>
-
-<!-- <input type="radio" id="vibe" name="vibe" value="10">
-<label for="html">&#128518</label>
-<input type="radio" id="vibe" name="vibe" value="11">
-<label for="html">&#128522</label>
-<input type="radio" id="vibe" name="vibe" value="12">
-<label for="html">&#128528</label>
-<input type="radio" id="vibe" name="vibe" value="13">
-<label for="html">&#128554</label>
-<input type="radio" id="vibe" name="vibe" value="14">
-<label for="html">&#128579</label>
-<input type="radio" id="vibe" name="vibe" value="15">
-<label for="html">&#128580</label> -->
-
 <script>
   var jValues = ["Excited", "Happy", "Ok", "Sleepy", "Sad", "Tired"];
+  var kValues = [1, 2, 3, 4, 5, 6]
   var kValues = [{{ Z | safe}}, {{ Y | safe}}, {{ X | safe}}, {{ W | safe}}, {{ S | safe}}, {{ V | safe}}];
   var barColors = [
     "#b91d47",
@@ -115,48 +101,6 @@ Morning Mood Log: <br>
     }
   });
   </script>
-
-</body>
-</html>
-  average hours slept: {{avg_hours}}
-  <br>
-  average snoozes: {{avg_snoozes}}
-
-  <br>
-  <br>
-
-  <p style="font-family:Gamja Flower; font-size:30px">sleep log:</p>
-  <!DOCTYPE html>
-  <html>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-      <body>
-        <canvas class="center" id="myChart" style="width:100%;max-width:600px"></canvas>
-
-        <script>
-
-        new Chart("myChart", {
-          type: "line",
-          data: {
-            labels: {{time | safe}},
-            datasets: [{
-              label : "Data points",
-              data : {{ hours | safe}},
-              fill: false,
-              lineTension: 0,
-              backgroundColor: "rgba(0,0,255,1.0)",
-              borderColor: "rgba(0,0,255,0.1)",
-            }]
-          },
-          options: {
-            legend: {display: false},
-            scales: {
-              yAxes: [{ticks: {min: 0, max:24}}],
-            }
-          }
-        });
-        </script>
-
-      </body>
   </html>
 {% endblock %}
 

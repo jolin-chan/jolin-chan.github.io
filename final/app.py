@@ -232,11 +232,11 @@ def analysis():
     D = db.execute("SELECT COUNT(sleep_quality) FROM diary WHERE user_id = ? AND sleep_quality = ?", session["user_id"], "Not so great")[0]["COUNT(sleep_quality)"]
     E = db.execute("SELECT COUNT(sleep_quality) FROM diary WHERE user_id = ? AND sleep_quality = ?", session["user_id"], "Didn't sleep a wink")[0]["COUNT(sleep_quality)"]
     #for mood log
-    Z = db.execute("SELECT COUNT(mood) FROM diary WHERE user_id = ? AND mood = ?", session["user_id"], "Excited")[0]["COUNT(mood)"]
-    Y = db.execute("SELECT COUNT(mood) FROM diary WHERE user_id = ? AND mood = ?", session["user_id"], "Happy")[0]["COUNT(mood)"]
-    X = db.execute("SELECT COUNT(mood) FROM diary WHERE user_id = ? AND mood = ?", session["user_id"], "Ok")[0]["COUNT(mood)"]
-    W = db.execute("SELECT COUNT(mood) FROM diary WHERE user_id = ? AND mood = ?", session["user_id"], "Sleepy")[0]["COUNT(mood)"]
-    S = db.execute("SELECT COUNT(mood) FROM diary WHERE user_id = ? AND mood = ?", session["user_id"], "Sad")[0]["COUNT(mood)"]
-    V = db.execute("SELECT COUNT(mood) FROM diary WHERE user_id = ? AND mood = ?", session["user_id"], "Tired")[0]["COUNT(mood)"]
+    Z = db.execute("SELECT COUNT(mood) FROM diary WHERE user_id = ? AND mood = ?", session["user_id"], "excited")[0]["COUNT(mood)"]
+    Y = db.execute("SELECT COUNT(mood) FROM diary WHERE user_id = ? AND mood = ?", session["user_id"], "happy")[0]["COUNT(mood)"]
+    X = db.execute("SELECT COUNT(mood) FROM diary WHERE user_id = ? AND mood = ?", session["user_id"], "ok")[0]["COUNT(mood)"]
+    W = db.execute("SELECT COUNT(mood) FROM diary WHERE user_id = ? AND mood = ?", session["user_id"], "sleepy")[0]["COUNT(mood)"]
+    S = db.execute("SELECT COUNT(mood) FROM diary WHERE user_id = ? AND mood = ?", session["user_id"], "sad")[0]["COUNT(mood)"]
+    V = db.execute("SELECT COUNT(mood) FROM diary WHERE user_id = ? AND mood = ?", session["user_id"], "tired")[0]["COUNT(mood)"]
     return render_template("analysis.html", avg_hours = avg_hours, avg_snoozes = avg_snoozes, time = time, hours = hours, A = A, B = B, C = C, D = D, E = E, Z = Z, Y = Y, W = W, X = X, V = V, S = S)
  
