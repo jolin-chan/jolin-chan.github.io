@@ -197,8 +197,10 @@ def get_resources():
 @app.route("/analysis")
 @login_required
 def analysis():
-    avg_hours = db.execute("SELECT AVG(hours_slept) FROM diary WHERE user_id = ?", session["user_id"])[0]['AVG(hours_slept)']
-    avg_snoozes = db.execute("SELECT AVG(snoozes) FROM diary WHERE user_id = ?", session["user_id"])[0]['AVG(snoozes)']
+    avghours = db.execute("SELECT AVG(hours_slept) FROM diary WHERE user_id = ?", session["user_id"])[0]['AVG(hours_slept)']
+    avg_hours = round(avghours, 2)
+    avgsnoozes = db.execute("SELECT AVG(snoozes) FROM diary WHERE user_id = ?", session["user_id"])[0]['AVG(snoozes)']
+    avg_snoozes = round(avgsnoozes, 2)
     #for the sleeping hour log
     time = []
     x = db.execute("SELECT time FROM diary WHERE user_id = ?", session["user_id"])
