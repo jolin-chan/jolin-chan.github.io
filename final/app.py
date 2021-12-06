@@ -103,7 +103,8 @@ def register():
 @app.route("/index")
 @login_required
 def index():
-    username = session["user_id"]
+    name = db.execute("SELECT username FROM users JOIN diary ON users.id = diary.user_id WHERE diary.user_id = ?", session["user_id"])[0]
+    username = name["username"]
     return render_template("index.html", username = username)
 
 #SECOND PAGE FUNCTIONALITIES
@@ -148,9 +149,9 @@ def diary():
         db.execute("INSERT INTO diary (user_id, hours_slept, snoozes, sleep_quality, mood, daily_goals, dream) VALUES (?,?,?,?,?,?,?)", session["user_id"], hours_slept, snoozes, sleep_quality, mood, daily_goals, dream)
         return render_template("submitted.html")
     else:
-        # Get username to make it personal
-        #create a table that has the user_id with the username
-        return render_template("diary.html")
+        name = db.execute("SELECT username FROM users JOIN diary ON users.id = diary.user_id WHERE diary.user_id = ?", session["user_id"])[0]
+        username = name["username"]
+        return render_template("diary.html", username = username)
 
 @app.route("/log")
 @login_required
