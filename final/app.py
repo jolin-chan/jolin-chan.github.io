@@ -211,7 +211,7 @@ def analysis():
     B = db.execute("SELECT COUNT(sleep_quality) FROM diary WHERE user_id = ? AND sleep_quality = ?", session["user_id"], "Good")[0]["COUNT(sleep_quality)"]
     C = db.execute("SELECT COUNT(sleep_quality) FROM diary WHERE user_id = ? AND sleep_quality = ?", session["user_id"], "Eh.. it was okay")[0]["COUNT(sleep_quality)"]
     D = db.execute("SELECT COUNT(sleep_quality) FROM diary WHERE user_id = ? AND sleep_quality = ?", session["user_id"], "Not so great")[0]["COUNT(sleep_quality)"]
-    E = db.execute("SELECT COUNT(sleep_quality) FROM diary WHERE user_id = ? AND sleep_quality = ?", session["user_id"], "Didn't sleep a wink")[0]["COUNT(sleep_quality)"]
+    E = db.execute("SELECT COUNT(sleep_quality) FROM diary WHERE user_id = ? AND sleep_quality = ?", session["user_id"], "Didn't sleep a wink T_T")[0]["COUNT(sleep_quality)"]
     #for mood log
     Z = db.execute("SELECT COUNT(mood) FROM diary WHERE user_id = ? AND mood = ?", session["user_id"], "excited")[0]["COUNT(mood)"]
     Y = db.execute("SELECT COUNT(mood) FROM diary WHERE user_id = ? AND mood = ?", session["user_id"], "happy")[0]["COUNT(mood)"]
