@@ -29,7 +29,6 @@ if not os.environ.get("API_KEY"):
 
 @app.after_request
 def after_request(response):
-    """Ensure responses aren't cached"""
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
     response.headers["Expires"] = 0
     response.headers["Pragma"] = "no-cache"
@@ -41,14 +40,14 @@ def home():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    # Forget any user_id
+    # Forget user_id
     session.clear()
     # User reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
-        # Ensure username was submitted
+        # Ensure user submitted username
         if not request.form.get("username"):
             return render_template("error.html")
-        # Ensure password was submitted
+        # Ensure user submitted password
         elif not request.form.get("password"):
             return render_template("error.html")
         # Query database for username
@@ -56,10 +55,10 @@ def login():
         # Ensure username exists and password is correct
         if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
             return render_template("error.html")
-        # Remember which user has logged in
+        # Remember which user logged in
         session["user_id"] = rows[0]["id"]
         username = rows[0]["username"]
-        # Redirect user to home page
+        # Redirect user to home page and add username into welcome page title
         return render_template("index.html", username = username)
     # User reached route via GET (as by clicking a link or via redirect)
     else:
@@ -78,7 +77,7 @@ def register():
         username = request.form.get("username")
         password = request.form.get("password")
         confirmation = request.form.get("confirmation")
-        # Ensure user input information properly
+        # Ensure user input username, password, and confirmation properly
         if not username:
             return render_template("error.html")
         if not password:
@@ -103,8 +102,6 @@ def register():
 @app.route("/index")
 @login_required
 def index():
-    # name = db.execute("SELECT username FROM users JOIN diary ON users.id = diary.user_id WHERE diary.user_id = ?", session["user_id"])[0]
-    # username = name["username"]
     return render_template("index.html")
 
 #SECOND PAGE FUNCTIONALITIES
@@ -153,13 +150,12 @@ def diary():
         db.execute("INSERT INTO diary (user_id, hours_slept, snoozes, sleep_quality, mood, daily_goals, dream) VALUES (?,?,?,?,?,?,?)", session["user_id"], hours_slept, snoozes, sleep_quality, mood, daily_goals, dream)
         return render_template("submitted.html")
     else:
-        # name = db.execute("SELECT username FROM users JOIN diary ON users.id = diary.user_id WHERE diary.user_id = ?", session["user_id"])[0]
-        # username = name["username"]
         return render_template("diary.html")
 
 @app.route("/log")
 @login_required
 def log():
+    # Get past inputted information from diary table for cards
     diarys = db.execute("SELECT * FROM diary WHERE user_id = :user_id ORDER BY time DESC", user_id=session["user_id"])
     return render_template("log.html", diarys = diarys)
 
@@ -169,12 +165,14 @@ def change_password():
     if request.method == "POST":
         new_password = request.form.get("new_password")
         new_password_confirmation = request.form.get("new_password_confirmation")
+        # Make sure passwords are inputted correctly
         if not new_password:
             return render_template("error.html")
         if not new_password_confirmation:
             return render_template("error.html")
         if new_password != new_password_confirmation:
             return render_template("error.html")
+        # Hash password to store into table and update table with hashed password
         new_password_hash = generate_password_hash(new_password)
         db.execute("UPDATE users SET hash = ? WHERE id = ?", new_password_hash, session["user_id"])
         return render_template("changed.html", new_password_hash = new_password_hash)
@@ -187,7 +185,7 @@ def get_resources():
     if request.method == "POST":
         categories = request.form.getlist("tips")
         tips = []
-        # find selected categories and add together
+        # find selected categories and append
         for category in categories:
           sleep_tips = db.execute("SELECT category, source, link FROM tips WHERE category = ?", category)
           for dict in sleep_tips:
