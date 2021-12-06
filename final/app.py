@@ -114,8 +114,12 @@ def diary():
     if request.method == "POST":
         #ask for hours slept
         hours_slept = request.form.get("hours_slept")
+        if not request.form.get("hours_slept").isdigit():
+            return render_template("error.html")
         #ask for number of snoozes
         snoozes = request.form.get("snoozes")
+        if not request.form.get("snoozes").isdigit():
+            return render_template("error.html")
         #ask for sleep quality
         #ask for today's goals
         daily_goals = request.form.get("daily_goals")
