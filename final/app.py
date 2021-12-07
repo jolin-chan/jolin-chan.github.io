@@ -1,3 +1,4 @@
+#BASED AND REFERENCED FROM CS50 WEEK 9 PSET FINANCE
 import os
 
 from cs50 import SQL
@@ -117,11 +118,11 @@ def diary():
         snoozes = request.form.get("snoozes")
         if request.form.get("snoozes").isalpha():
             return render_template("error.html")
-        #ask for sleep quality
         #ask for today's goals
         daily_goals = request.form.get("daily_goals")
         #ask for dreams
         dream = request.form.get("dream")
+        #ask for sleep quality
         if request.form.get("sleep") == "1":
             sq = "Best Night Ever!!"
         elif request.form.get("sleep") == "2":
