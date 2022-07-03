@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <form action="/index">
+        <div class="container">
+            <br>
+            <h4 class=header2>welcome {{username}}! this is SleepS50.</h4>
+                <div>
+                <p class="margins">
+                        <img src="/static/welcome.jpg" alt="welcome bunny" width="25%"><br>
+                        to get started, go ahead and make a diary entry for today and then view your sleep analysis! also feel free to check out the list of resources that we have avaliable for you to view and download :)
+                </p>
+                </div>
+        </div>
+    </form>
+{% endblock %}
